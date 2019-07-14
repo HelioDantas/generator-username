@@ -4,7 +4,7 @@
 [![Downloads][downloads-image]][npm-url]
 
 
-A library para validators.
+A library para criação de userName.
 
 
 ## Installation and Usage
