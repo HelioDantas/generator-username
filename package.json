@@ -1,6 +1,6 @@
 {
   "name": "generator-username",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "gerador de nome de usuario",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,11 @@
     "type": "git",
     "url": "https://github.com/HelioDantas/generator-username.git"
   },
-  "keywords": [],
+  "keywords": [
+    "username",
+    "generator",
+    "random"
+  ],
   "author": {
     "name": "Helio Dantas",
     "email": "helio.dantas@outlook.com"
