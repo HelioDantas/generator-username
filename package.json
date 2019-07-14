@@ -6,6 +6,11 @@
   "scripts": {
     "test": "mocha ./test/gerador.test.js"
   },
+  "homepage": "https://github.com/HelioDantas/generator-username.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HelioDantas/generator-username.git"
+  },
   "keywords": [],
   "author": {
     "name": "Helio Dantas",
