@@ -46,16 +46,16 @@ console.log(userName);
 ### Regras
 ```
 - 1 : userName sepador por ponto
-     Exemplo: helio.dantas
+     Exemplo: helio.oliveira
      
 - 2 : userName sepador por underline
-     Exemplo: helio_dantas
+     Exemplo: helio_oliveira
      
 - 3 : userName sepador por traço
-     Exemplo: helio-dantas
+     Exemplo: helio-oliveira
 
 -  :4 userName sepador por ponto mais numero que ira crescer quantas vezes o chamar
-     Exemplo: helio-dantas1
+     Exemplo: helio-oliveira1
      
 ```
 
