@@ -1,4 +1,4 @@
-const {retiraAcentos, retirarPalavrasMenorTres, stringSemPrimeiraPalavra, menorPalavra} = require('./util');
+const {retiraAcentos, retirarPalavrasMenorTres, stringSemPrimeiraPalavra, menorPalavra, Sobrenomes} = require('./util');
 
 class Gerador {
 
@@ -16,6 +16,7 @@ class Gerador {
         this._erro3 = 1;
         this._erro2 = 1;
         this._erro4 = 1;
+        this.quantidadeDosSobrenome = 0;
 
     }
 
@@ -32,7 +33,8 @@ class Gerador {
         this.retidaraDePalavrasMenoresQueTres = retirarPalavrasMenorTres(sliceNome);
         const nomeSemPrimeiroNome = stringSemPrimeiraPalavra(this.retidaraDePalavrasMenoresQueTres);
         this.menorSobrenome = menorPalavra(nomeSemPrimeiroNome);
-
+        this._iniciErros()
+        this._iniciErro();
     }
 
     /**
@@ -49,15 +51,17 @@ class Gerador {
     }
 
     tentativa1() {
+
         if (this.tentativa === 1) {
-            if (this._erro1 < this.retidaraDePalavrasMenoresQueTres.length) {
-                this._erro1++;
+
+            if (this._erro1 !== 0) {
+                this._erro1--;
                 this.email = `${this.retidaraDePalavrasMenoresQueTres[0].string}.${this.retidaraDePalavrasMenoresQueTres[this._erro].string}`;
-                this._erro++;
+                this._erro--;
 
             } else {
                 this.tentativa = 2;
-                this._erro = 1
+                this._iniciErro();
             }
 
 
@@ -67,14 +71,14 @@ class Gerador {
 
     tentativa2() {
         if (this.tentativa === 2) {
-            if (this._erro2 < this.retidaraDePalavrasMenoresQueTres.length) {
-                this._erro2++;
+            if (this._erro2 !== 0) {
+                this._erro2--;
                 this.email = `${this.retidaraDePalavrasMenoresQueTres[0].string}_${this.retidaraDePalavrasMenoresQueTres[this._erro].string}`;
-                this._erro++;
+                this._erro--;
 
             } else {
                 this.tentativa = 3;
-                this._erro = 1
+                this._iniciErro();
             }
 
 
@@ -85,14 +89,14 @@ class Gerador {
 
     tentativa3() {
         if (this.tentativa === 3) {
-            if (this._erro3 < this.retidaraDePalavrasMenoresQueTres.length) {
-                this._erro3++;
+            if (this._erro3 !== 0) {
+                this._erro3--;
                 this.email = `${this.retidaraDePalavrasMenoresQueTres[0].string}-${this.retidaraDePalavrasMenoresQueTres[this._erro].string}`;
-                this._erro++;
+                this._erro--;
 
             } else {
                 this.tentativa = 4;
-                this._erro = 1
+                this._iniciErro();
             }
 
 
@@ -108,17 +112,16 @@ class Gerador {
                 return this;
             }
             //     console.log('team', this.retidaraDePalavrasMenoresQueTres.length);
-            if (this._erro4 >= this.retidaraDePalavrasMenoresQueTres.length) {
-                this._erro = 1
-                this._erro4 = 1;
+            if (this._erro4 !== 0) {
+                this._iniciErro();
+                this._erro4 = this.retidaraDePalavrasMenoresQueTres.length - 1;
                 this.count++;
 
             }
-            this._erro4++;
-            //    console.log('erro', this._erro);
+            this._erro4--;
+
             this.email = `${this.retidaraDePalavrasMenoresQueTres[0].string}.${this.retidaraDePalavrasMenoresQueTres[this._erro].string}${this.count}`;
-            this._erro++;
-            //    console.log(this._erro4);
+            this._erro--;
 
         }
         return this;
@@ -133,7 +136,7 @@ class Gerador {
                     this._erro2++;
                     this.tamanhoDaFrente = 1
                 } else {
-                    ff = this.retidaraDePalavrasMenoresQueTres[this._erro].string.slice(0, this.tamanhoDaFrente)
+                    ff = this.retidaraDePalavrasMenoresQueTres[this._erro].string.slice(0, this.tamanhoDaFrente);
                     this.tamanhoDaFrente++;
                     this.email = `${ff}${this.retidaraDePalavrasMenoresQueTres[0].string}.${this.retidaraDePalavrasMenoresQueTres[this._erro].string}`;
                 }
@@ -163,6 +166,16 @@ class Gerador {
         const tiraAcento = retiraAcentos(nomeMinuscule);
         return tiraAcento.split(" ");
 
+    }
+    _iniciErro() {
+        this._erro = this.retidaraDePalavrasMenoresQueTres.length - 1;
+    }
+
+    _iniciErros() {
+        this._erro1 = this.retidaraDePalavrasMenoresQueTres.length - 1;
+        this._erro2 = this.retidaraDePalavrasMenoresQueTres.length - 1;
+        this._erro3 = this.retidaraDePalavrasMenoresQueTres.length - 1;
+        this._erro4 = this.retidaraDePalavrasMenoresQueTres.length - 1;
     }
 }
 

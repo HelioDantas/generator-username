@@ -19,8 +19,9 @@ module.exports.retiraAcentos = function (str) {
     return novas;
 };
 module.exports.retirarPalavrasMenorTres = function (palavra) {
-
+    const primeiraPalavra = palavra[0];
     return palavra.filter(string => {
+        if (string === primeiraPalavra) return string;
         return string.length > 3;
     }).map(Element => {
         return {tamanho: Element.length, string: Element};
@@ -39,4 +40,8 @@ module.exports.menorPalavra = function (palavra) {
             return current;
         return previous;
     });
+};
+module.exports.Sobrenomes = function (arrayPalavras) {
+    const primeiraPalavra = arrayPalavras[0];
+    return arrayPalavras.filter(string => string !== primeiraPalavra && string.length > 3);
 };
