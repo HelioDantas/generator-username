@@ -32,6 +32,7 @@ class Gerador {
         const sliceNome = this._format(nome);
         this.retidaraDePalavrasMenoresQueTres = retirarPalavrasMenorTres(sliceNome);
         const nomeSemPrimeiroNome = stringSemPrimeiraPalavra(this.retidaraDePalavrasMenoresQueTres);
+
         this.menorSobrenome = menorPalavra(nomeSemPrimeiroNome);
         this._iniciErros()
         this._iniciErro();
@@ -153,7 +154,7 @@ class Gerador {
     _default() {
         if (this.email.length >= 21) {
 
-            this.email`${this.retidaraDePalavrasMenoresQueTres[0].string.slice(0, 1)}.${this.menorSobrenome.string}${this.count}`;
+            this.email = `${this.retidaraDePalavrasMenoresQueTres[0].string.slice(0, 1)}.${this.menorSobrenome.string}${this.count}`;
             this.count++;
 
         }
