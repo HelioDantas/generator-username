@@ -49,7 +49,7 @@ describe('Teste!', function () {
     it('Criar um usuario quarto 50', async () => {
         const expected = 'helio_oliveira';
         const gerador = new Gerador();
-        gerador.setNome('helio luiz de albuquerque oliveira');
+        gerador.setNome('VANDERLICE  DA SILVA NASCIMENTO');
         for (var i = 0; i < 50; i++) {
             const nome = gerador.gerar();
             console.log(nome);
@@ -62,7 +62,8 @@ describe('Teste!', function () {
     it('Criar um usuario quarto 100', async () => {
         const expected = 'helio_oliveira';
         const gerador = new Gerador();
-        gerador.setNome('a des CAROLINA AMARAL');
+        gerador.setNome('ANA KAROLINA MENDES ALVES');
+        console.log(gerador);
         for (var i = 0; i < 100; i++) {
             const nome = gerador.gerar();
             console.log(nome);
