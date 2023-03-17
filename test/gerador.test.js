@@ -1,12 +1,7 @@
 const {ok, deepEqual} = require('assert');
-
-
 const Gerador = require('../src/gerador');
 
-
-describe('Teste!', function () {
-
-
+describe('Gerador', function () {
     it('Criar um usuario', async () => {
         const expected = 'helio.oliveira';
         const gerador = new Gerador();
@@ -47,28 +42,39 @@ describe('Teste!', function () {
     })
 
     it('Criar um usuario quarto 50', async () => {
-        const expected = 'helio_oliveira';
+        const expected = 'v.silva93';
         const gerador = new Gerador();
         gerador.setNome('VANDERLICE  DA SILVA NASCIMENTO');
         for (var i = 0; i < 50; i++) {
             const nome = gerador.gerar();
-            console.log(nome);
-
         }
         const result = gerador.gerar();
         deepEqual(expected, result);
     })
 
     it('Criar um usuario quarto 100', async () => {
-        const expected = 'helio_oliveira';
+        const expected = 'ana.alves93';
         const gerador = new Gerador();
         gerador.setNome('ANA KAROLINA MENDES ALVES');
-        console.log(gerador);
         for (var i = 0; i < 100; i++) {
             const nome = gerador.gerar();
-            console.log(nome);
-
         }
+        const result = gerador.gerar();
+        deepEqual(expected, result);
+    })
+
+    it('Criar um usuario com nome pequeno', async () => {
+        const expected = 'maria1';
+        const gerador = new Gerador();
+        gerador.setNome('maria gil');
+        const result = gerador.gerar();
+        deepEqual(expected, result);
+    })
+
+    it('Criar um usuario com nome pequeno e com 1 sobrenome', async () => {
+        const expected = 'maria.gila';
+        const gerador = new Gerador();
+        gerador.setNome('maria gila');
         const result = gerador.gerar();
         deepEqual(expected, result);
     })

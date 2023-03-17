@@ -34,12 +34,15 @@ module.exports.stringSemPrimeiraPalavra = function (palavra) {
     });
 };
 
-module.exports.menorPalavra = function (palavra) {
-    return palavra.reduce((previous, current) => {
+module.exports.menorPalavra = function (names) {
+    if (names.length === 0) {
+       return '';
+    }
+    return names.reduce((previous, current) => {
         if (previous.string.length > current.string.length)
             return current;
         return previous;
-    }, []);
+    });
 };
 module.exports.Sobrenomes = function (arrayPalavras) {
     const primeiraPalavra = arrayPalavras[0];
