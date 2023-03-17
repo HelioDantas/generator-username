@@ -39,7 +39,7 @@ module.exports.menorPalavra = function (palavra) {
         if (previous.string.length > current.string.length)
             return current;
         return previous;
-    });
+    }, []);
 };
 module.exports.Sobrenomes = function (arrayPalavras) {
     const primeiraPalavra = arrayPalavras[0];
