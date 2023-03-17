@@ -4,7 +4,7 @@
   "description": "gerador de nome de usuario",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./test/gerador.test.js"
+    "test": "mocha"
   },
   "homepage": "https://github.com/HelioDantas/generator-username.git",
   "repository": {
@@ -21,7 +21,7 @@
     "email": "helio.dantas@outlook.com"
   },
   "devDependencies": {
-    "mocha": "^6.1.4"
+    "mocha": "^8.2.0"
   },
   "license": "ISC"
 }
