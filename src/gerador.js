@@ -1,7 +1,6 @@
-const {retiraAcentos, retirarPalavrasMenorTres, stringSemPrimeiraPalavra, menorPalavra, Sobrenomes} = require('./util');
+const {retiraAcentos, retirarPalavrasMenorTres, stringSemPrimeiraPalavra, menorPalavra} = require('./util');
 
 class Gerador {
-
     /**
      * Create an instance of Gerador
      *
@@ -17,7 +16,6 @@ class Gerador {
         this._erro2 = 1;
         this._erro4 = 1;
         this.quantidadeDosSobrenome = 0;
-
     }
 
     /**
@@ -30,12 +28,12 @@ class Gerador {
             throw "O valor passado do nome  nao e uma string"
         }
         const sliceNome = this._format(nome);
-        this.retidaraDePalavrasMenoresQueTres = retirarPalavrasMenorTres(sliceNome);
-        const nomeSemPrimeiroNome = stringSemPrimeiraPalavra(this.retidaraDePalavrasMenoresQueTres);
-
-        this.menorSobrenome = menorPalavra(nomeSemPrimeiroNome);
-        this._iniciErros()
-        this._iniciErro();
+        this.nomesValidos = retirarPalavrasMenorTres(sliceNome);
+        const sobrenomes = stringSemPrimeiraPalavra(this.nomesValidos);
+        this.menorSobrenome = menorPalavra(sobrenomes).string;
+        this.primeiroNome = this.nomesValidos[0].string;
+        this._iniciarErros()
+        this._iniciarErro();
     }
 
     /**
@@ -52,20 +50,16 @@ class Gerador {
     }
 
     tentativa1() {
-
         if (this.tentativa === 1) {
-
             if (this._erro1 !== 0) {
                 this._erro1--;
-                this.email = `${this.retidaraDePalavrasMenoresQueTres[0].string}.${this.retidaraDePalavrasMenoresQueTres[this._erro].string}`;
+                this.email = `${this.primeiroNome}.${this.nomesValidos[this._erro].string}`;
                 this._erro--;
 
             } else {
                 this.tentativa = 2;
-                this._iniciErro();
+                this._iniciarErro();
             }
-
-
         }
         return this;
     }
@@ -74,15 +68,12 @@ class Gerador {
         if (this.tentativa === 2) {
             if (this._erro2 !== 0) {
                 this._erro2--;
-                this.email = `${this.retidaraDePalavrasMenoresQueTres[0].string}_${this.retidaraDePalavrasMenoresQueTres[this._erro].string}`;
+                this.email = `${this.primeiroNome}_${this.nomesValidos[this._erro].string}`;
                 this._erro--;
-
             } else {
                 this.tentativa = 3;
-                this._iniciErro();
+                this._iniciarErro();
             }
-
-
         }
         return this;
     }
@@ -92,36 +83,31 @@ class Gerador {
         if (this.tentativa === 3) {
             if (this._erro3 !== 0) {
                 this._erro3--;
-                this.email = `${this.retidaraDePalavrasMenoresQueTres[0].string}-${this.retidaraDePalavrasMenoresQueTres[this._erro].string}`;
+                this.email = `${this.primeiroNome}-${this.nomesValidos[this._erro].string}`;
                 this._erro--;
-
             } else {
                 this.tentativa = 4;
-                this._iniciErro();
+                this._iniciarErro();
             }
-
-
         }
         return this;
     }
 
     tentativa4() {
         if (this.tentativa === 4) {
-            if (this.retidaraDePalavrasMenoresQueTres.length === 1) {
-                this.email = `${this.retidaraDePalavrasMenoresQueTres[0].string}${this.count}`;
+            if (this.nomesValidos.length === 1) {
+                this.email = `${this.primeiroNome}${this.count}`;
                 this.count++;
                 return this;
             }
-            //     console.log('team', this.retidaraDePalavrasMenoresQueTres.length);
             if (this._erro4 !== 0) {
-                this._iniciErro();
-                this._erro4 = this.retidaraDePalavrasMenoresQueTres.length - 1;
+                this._iniciarErro();
+                this._erro4 = this.nomesValidos.length - 1;
                 this.count++;
-
             }
             this._erro4--;
 
-            this.email = `${this.retidaraDePalavrasMenoresQueTres[0].string}.${this.retidaraDePalavrasMenoresQueTres[this._erro].string}${this.count}`;
+            this.email = `${this.primeiroNome}.${this.nomesValidos[this._erro].string}${this.count}`;
             this._erro--;
 
         }
@@ -130,53 +116,47 @@ class Gerador {
 
     _tentativa5() {
         if (this.tentativa === 5) {
-            if (this._erro2 < this.retidaraDePalavrasMenoresQueTres.length) {
-                let ff;
-                if (this.retidaraDePalavrasMenoresQueTres[this._erro].string.slice(0, this.tamanhoDaFrente).length >= this.retidaraDePalavrasMenoresQueTres[this._erro].string.length - 1) {
+            if (this._erro2 < this.nomesValidos.length) {
+                if (this.nomesValidos[this._erro].string.slice(0, this.tamanhoDaFrente).length >= this.nomesValidos[this._erro].string.length - 1) {
                     this._erro++;
                     this._erro2++;
                     this.tamanhoDaFrente = 1
                 } else {
-                    ff = this.retidaraDePalavrasMenoresQueTres[this._erro].string.slice(0, this.tamanhoDaFrente);
+                    const ff = this.nomesValidos[this._erro].string.slice(0, this.tamanhoDaFrente);
                     this.tamanhoDaFrente++;
-                    this.email = `${ff}${this.retidaraDePalavrasMenoresQueTres[0].string}.${this.retidaraDePalavrasMenoresQueTres[this._erro].string}`;
+                    this.email = `${ff}${this.primeiroNome}.${this.nomesValidos[this._erro].string}`;
                 }
 
             } else {
                 this.tentativa = 3;
                 this._erro = 1
             }
-
         }
         return this;
     }
 
     _default() {
         if (this.email.length >= 21) {
-
-            this.email = `${this.retidaraDePalavrasMenoresQueTres[0].string.slice(0, 1)}.${this.menorSobrenome.string}${this.count}`;
+            this.email = `${this.primeiroNome.slice(0, 1)}.${this.menorSobrenome}${this.count}`;
             this.count++;
-
         }
         return this;
-
     }
 
     _format(nome) {
         const nomeMinuscule = nome.toLowerCase();
-        const tiraAcento = retiraAcentos(nomeMinuscule);
-        return tiraAcento.split(" ");
-
+        const nomeSemAcento = retiraAcentos(nomeMinuscule);
+        return nomeSemAcento.split(" ");
     }
-    _iniciErro() {
-        this._erro = this.retidaraDePalavrasMenoresQueTres.length - 1;
+    _iniciarErro() {
+        this._erro = this.nomesValidos.length - 1;
     }
 
-    _iniciErros() {
-        this._erro1 = this.retidaraDePalavrasMenoresQueTres.length - 1;
-        this._erro2 = this.retidaraDePalavrasMenoresQueTres.length - 1;
-        this._erro3 = this.retidaraDePalavrasMenoresQueTres.length - 1;
-        this._erro4 = this.retidaraDePalavrasMenoresQueTres.length - 1;
+    _iniciarErros() {
+        this._erro1 = this.nomesValidos.length - 1;
+        this._erro2 = this.nomesValidos.length - 1;
+        this._erro3 = this.nomesValidos.length - 1;
+        this._erro4 = this.nomesValidos.length - 1;
     }
 }
 

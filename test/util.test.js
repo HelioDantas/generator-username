@@ -14,7 +14,11 @@ describe('Util', function () {
 
     it('Quantidade de sobrenome', async () => {
         const expected = ['luiz', 'albuquerque', 'oliveira'];
-        const gerador = Util.Sobrenomes(['ana', 'luiz', 'de', 'albuquerque', 'oliveira']);
+        const gerador = Util
+        .stringSemPrimeiraPalavra(
+            Util.retirarPalavrasMenorTres(['ana', 'luiz', 'de', 'albuquerque', 'oliveira'])
+            .map(n => n.string)
+        );
         const result = gerador;
         deepEqual(expected, result);
     })

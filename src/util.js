@@ -18,20 +18,28 @@ module.exports.retiraAcentos = function (str) {
     }
     return novas;
 };
-module.exports.retirarPalavrasMenorTres = function (palavra) {
-    const primeiraPalavra = palavra[0];
-    return palavra.filter(string => {
-        if (string === primeiraPalavra) return string;
-        return string.length > 3;
-    }).map(Element => {
-        return {tamanho: Element.length, string: Element};
+
+module.exports.retirarPalavrasMenorTres = function (nomes) {
+    nomesCopy = [...nomes];
+
+    const primeiroNome = nomes[0];
+    const ultimoSobrenome = nomes.pop();
+
+    const nomesComTamMaiorQue3 = nomes.filter(nome => {
+        if (nome === primeiroNome) return nome;
+        return nome.length > 3
+    });
+
+    nomesComTamMaiorQue3.push(ultimoSobrenome);
+    return nomesComTamMaiorQue3.map(sobrenome => {
+        return {tamanho: sobrenome.length, string: sobrenome};
     });
 };
 
-module.exports.stringSemPrimeiraPalavra = function (palavra) {
-    return palavra.filter(string => {
-        return palavra[0].string !== string.string;
-    });
+module.exports.stringSemPrimeiraPalavra = function (nomes) {
+    nomesCopy = [...nomes];
+    nomesCopy.shift();
+    return nomesCopy;
 };
 
 module.exports.menorPalavra = function (names) {
@@ -39,12 +47,8 @@ module.exports.menorPalavra = function (names) {
        return '';
     }
     return names.reduce((previous, current) => {
-        if (previous.string.length > current.string.length)
-            return current;
+        if (previous.length > current.string.length)
+            return current.string;
         return previous;
     });
-};
-module.exports.Sobrenomes = function (arrayPalavras) {
-    const primeiraPalavra = arrayPalavras[0];
-    return arrayPalavras.filter(string => string !== primeiraPalavra && string.length > 3);
 };

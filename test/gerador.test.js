@@ -5,7 +5,7 @@ describe('Gerador', function () {
     it('Criar um usuario', async () => {
         const expected = 'helio.oliveira';
         const gerador = new Gerador();
-        gerador.setNome('helio luiz de albuquerque oliveira', '1213124');
+        gerador.setNome('helio luiz de albuquerque oliveira');
         const result = gerador.gerar();
         deepEqual(expected, result);
     })
@@ -13,7 +13,7 @@ describe('Gerador', function () {
     it('Criar um usuario segundo pedido', async () => {
         const expected = 'helio.albuquerque';
         const gerador = new Gerador();
-        gerador.setNome('helio luiz de albuquerque oliveira', '1213124');
+        gerador.setNome('helio luiz de albuquerque oliveira');
         gerador.gerar();
         const result = gerador.gerar();
         deepEqual(expected, result);
@@ -22,7 +22,7 @@ describe('Gerador', function () {
     it('Criar um usuario terceiro pedido', async () => {
         const expected = 'helio.luiz';
         const gerador = new Gerador();
-        gerador.setNome('helio luiz de albuquerque oliveira', '1213124');
+        gerador.setNome('helio luiz de albuquerque oliveira');
         gerador.gerar();
         gerador.gerar();
         const result = gerador.gerar();
@@ -46,7 +46,7 @@ describe('Gerador', function () {
         const gerador = new Gerador();
         gerador.setNome('VANDERLICE  DA SILVA NASCIMENTO');
         for (var i = 0; i < 50; i++) {
-            const nome = gerador.gerar();
+            gerador.gerar();
         }
         const result = gerador.gerar();
         deepEqual(expected, result);
@@ -57,16 +57,24 @@ describe('Gerador', function () {
         const gerador = new Gerador();
         gerador.setNome('ANA KAROLINA MENDES ALVES');
         for (var i = 0; i < 100; i++) {
-            const nome = gerador.gerar();
+            gerador.gerar();
         }
         const result = gerador.gerar();
         deepEqual(expected, result);
     })
 
     it('Criar um usuario com nome pequeno', async () => {
-        const expected = 'maria1';
+        const expected = 'maria.gil';
         const gerador = new Gerador();
         gerador.setNome('maria gil');
+        const result = gerador.gerar();
+        deepEqual(expected, result);
+    })
+
+    it('Criar um usuario com nome pequeno com 2 sobrenome pequenos', async () => {
+        const expected = 'maria.gil';
+        const gerador = new Gerador();
+        gerador.setNome('maria dos gil');
         const result = gerador.gerar();
         deepEqual(expected, result);
     })
