@@ -3,13 +3,9 @@
 [![NPM version][npm-image]][npm-url]
 [![Downloads][downloads-image]][npm-url]
 
+Uma biblioteca para criação de nomes de usuario(username).
 
-A library para criação de userName.
-
-
-## Installation and Usage
-
-
+## Instalação e uso
 
 Install the library with `npm i generator-username`
 
@@ -42,36 +38,30 @@ console.log(userName);
    */
 ```
 
-
 ### Regras
+
 ```
-- 1 : userName sepador por ponto
+- 1: username separado por ponto
      Exemplo: helio.oliveira
      
-- 2 : userName sepador por underline
+- 2: username separado por underline
      Exemplo: helio_oliveira
      
-- 3 : userName sepador por traço
+- 3: username separado por traço
      Exemplo: helio-oliveira
 
--  :4 userName sepador por ponto mais numero que ira crescer quantas vezes o chamar
+- 4: username separado por ponto mais numero que ira crescer quantas vezes o chamar
      Exemplo: helio-oliveira1
-     
+- 5: username primeiro letra do nome mais sobrenome e contador 
+     Exemplo: holiveira1   
 ```
-
-
-
-
-
-
 
 ## Maintainers
 
 - [Helio](https://github.com/HelioDantas) - **Helio Dantas** (author)
 
-
-
 ## License (ISN)
+
 ```
 Copyright (c) 2019 Helio Dantas <helio_dantas@outlook.com>
 
@@ -98,6 +88,3 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 [downloads-image]: http://img.shields.io/npm/dm/generator-username.svg
 [npm-url]: https://www.npmjs.com/package/generator-username
 [npm-image]: https://img.shields.io/npm/v/generator-username.svg
-    
-[mongoid]: http://docs.mongodb.org/manual/reference/object-id/
-[ISIN]: https://en.wikipedia.org/wiki/International_Securities_Identification_Number
